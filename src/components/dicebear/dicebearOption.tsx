@@ -1,6 +1,6 @@
 import { BACKEND_URL } from '@/config';
 import { DicebearQueryKey, constructQuery } from '@/utils/helpers';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 import Img from '../common/img';
 import { useDicebearContext } from '@/context/dicebearContext';
@@ -23,14 +23,14 @@ export default function DicebearOption({ selectedCategory, option }: Props) {
         ...query,
         [selectedCategory]: option,
       }),
-    [option]
+    [option, selectedCategory]
   );
 
   return (
     <button
       onClick={handleClick}
       className={twMerge(
-        'border p-1',
+        'border p-1 hover:border-red-800',
         query[selectedCategory] === option && 'border-4 border-red-800'
       )}
     >
