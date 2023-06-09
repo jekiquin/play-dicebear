@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { twMerge } from "tailwind-merge";
 
 interface Props {
     src: string,
@@ -7,7 +8,7 @@ interface Props {
 }
 
 export default function Im({src, alt, className}: Props) {
-    return <div className={className}>
+    return <div className={twMerge('relative', className)}>
         <Image src={src} alt={alt} fill />
     </div>
 }
