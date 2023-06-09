@@ -1,3 +1,4 @@
+import { BLUR_DATA_URL } from '@/utils/constants';
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 
@@ -16,7 +17,7 @@ export default function Im({ src, alt, className }: Props) {
         fill
         sizes="100%"
         placeholder="blur"
-        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+        blurDataURL={BLUR_DATA_URL}
       />
     </div>
   );

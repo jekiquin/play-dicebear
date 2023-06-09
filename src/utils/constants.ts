@@ -17,3 +17,6 @@ export const avatarOptions = {
   skinColor: ['f2d3b1', 'ecad80', '9e5622', '763900', '88cac6', 'e283c0'],
   backgroundColor: ['b6e3f4', 'c0aede', 'ffd5dc', 'ffdfbf'],
 };
+
+export const BLUR_DATA_URL =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
