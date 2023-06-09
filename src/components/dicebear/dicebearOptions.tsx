@@ -14,7 +14,7 @@ export default function DicebearOptions() {
   const category = keyOptions.map((value) => (
     <DicebearCategory
       key={value}
-      className={selectedCategory === value ? 'bg-black text-white' : ''}
+      className={selectedCategory === value ? styles.selectedCategory : ''}
       category={value}
       setSelectedCategory={setSelectedCategory}
     />
@@ -29,9 +29,16 @@ export default function DicebearOptions() {
   ));
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex gap-4 justify-center">{category}</div>
-      <div className="flex gap-4 flex-wrap">{options}</div>
+    <div className={styles.root}>
+      <div className={styles.category}>{category}</div>
+      <div className={styles.options}>{options}</div>
     </div>
   );
 }
+
+const styles = {
+  root: 'flex flex-col gap-6',
+  category: 'flex gap-4 justify-center',
+  options: 'flex gap-4 flex-wrap',
+  selectedCategory: 'bg-black text-white',
+};

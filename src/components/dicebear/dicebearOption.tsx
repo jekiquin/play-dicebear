@@ -26,19 +26,24 @@ export default function DicebearOption({ selectedCategory, option }: Props) {
     [option, selectedCategory]
   );
 
+  const selectedStyle = query[selectedCategory] === option && styles.selected;
+
   return (
     <button
       onClick={handleClick}
-      className={twMerge(
-        'border p-1 hover:border-red-800',
-        query[selectedCategory] === option && 'border-4 border-red-800'
-      )}
+      className={twMerge(styles.root, selectedStyle)}
     >
       <Img
         src={`${BACKEND_URL}${queryString}&scale=75`}
         alt="avatar"
-        className="h-40 w-40"
+        className={styles.img}
       />
     </button>
   );
 }
+
+const styles = {
+  root: 'border p-1 hover:border-red-800',
+  img: 'h-40 w-40',
+  selected: 'border-4 border-red-800',
+};

@@ -10,7 +10,11 @@ export default function MainImage() {
     <Img
       src={`${BACKEND_URL}${queryString}`}
       alt="avatar"
-      className="h-56 w-56"
+      className={styles.img}
     />
   );
 }
+
+const styles = {
+  img: 'h-56 w-56',
+};

@@ -17,15 +17,18 @@ export default function DicebearCategory({
     setSelectedCategory(category as DicebearQueryKey);
   };
 
+  const displayCategory = category.toUpperCase();
+
   return (
     <button
-      className={twMerge(
-        'border p-1 hover:bg-black hover:text-white transition-all',
-        className
-      )}
+      className={twMerge(styles.root, className)}
       onClick={handleClickCategory}
     >
-      {category.toUpperCase()}
+      {displayCategory}
     </button>
   );
 }
+
+const styles = {
+  root: 'border p-1 hover:bg-black hover:text-white transition-all',
+};

@@ -13,8 +13,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="container mx-auto">{children}</main>
+        <main className={styles.main}>{children}</main>
       </body>
     </html>
   );
 }
+
+const styles = {
+  main: 'container mx-auto',
+};

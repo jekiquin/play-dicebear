@@ -9,7 +9,7 @@ interface Props {
 
 export default function Im({ src, alt, className }: Props) {
   return (
-    <div className={twMerge('relative', className)}>
+    <div className={twMerge(styles.root, className)}>
       <Image
         src={src}
         alt={alt}
@@ -21,3 +21,7 @@ export default function Im({ src, alt, className }: Props) {
     </div>
   );
 }
+
+const styles = {
+  root: 'relative',
+};
