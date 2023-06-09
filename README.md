@@ -8,13 +8,27 @@ https://www.dicebear.com/
 
 ## Local Development
 
-First, run the development server:
+1. Clone the repo
 
-```bash
-yarn dev
-```
+   ```
+   git clone git@github.com:jekiquin/play-dicebear.git play-dicebear
+   ```
 
-## Environemnt Variable
+2. Install dependencies
+
+   ```
+   yarn
+   ```
+
+3. Run local server
+
+   ```
+   yarn dev
+   ```
+
+## Environment Variable
+
+I'm currently using the default endpoint but you can always self [host dicebear HTTP Api](https://www.dicebear.com/guides/host-the-http-api-yourself)
 
 ```
 NEXT_PUBLIC_BACKEND_URL=https://api.dicebear.com/6.x/adventurer/svg
