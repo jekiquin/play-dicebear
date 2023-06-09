@@ -1,17 +1,19 @@
 /** @type {import('next').NextConfig} */
-const {protocol, hostname} = new URL(process.env.NEXT_PUBLIC_BACKEND_URL)
+const { protocol, hostname, pathname } = new URL(
+  process.env.NEXT_PUBLIC_BACKEND_URL
+);
 const nextConfig = {
-    images: {
-        dangerouslyAllowSVG: true,
-        remotePatterns: [
-          {
-            protocol: protocol.replace(':', ''),
-            hostname,
-            port: '',
-            pathname: '/6.x/adventurer/**',
-          },
-        ],
+  images: {
+    dangerouslyAllowSVG: true,
+    remotePatterns: [
+      {
+        protocol: protocol.replace(':', ''),
+        hostname,
+        port: '',
+        pathname: `${pathname}**`,
       },
-}
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
