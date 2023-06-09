@@ -1,52 +1,37 @@
 import { BACKEND_URL } from '@/config';
-import {
-  DicebearQuery,
-  DicebearQueryKey,
-  constructQuery,
-} from '@/utils/helpers';
-import React, { useEffect, useState } from 'react';
+import { DicebearQueryKey, constructQuery } from '@/utils/helpers';
+import React, { useEffect, useMemo, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import Img from '../common/img';
+import { useDicebearContext } from '@/context/dicebearContext';
 
 interface Props {
-  query: DicebearQuery;
   selectedCategory: DicebearQueryKey;
-  setQuery: React.Dispatch<React.SetStateAction<DicebearQuery>>;
   option: string;
 }
 
-export default function DicebearOption({
-  query,
-  setQuery,
-  selectedCategory,
-  option,
-}: Props) {
-  const [selectedOption, setSelectedOption] = useState<string>(
-    query[selectedCategory]
-  );
+export default function DicebearOption({ selectedCategory, option }: Props) {
+  const { query, dispatch } = useDicebearContext();
 
-  const handleClickOptions = (value: string) => {
-    return () => {
-      setSelectedOption(value);
-      setQuery((prev) => ({ ...prev, [selectedCategory]: value }));
-    };
+  const handleClick = () => {
+    dispatch({ type: selectedCategory, payload: option });
   };
-  const queryString = constructQuery({
-    ...query,
-    [selectedCategory]: option,
-  });
 
-  useEffect(() => {
-    setSelectedOption(query[selectedCategory]);
-  }, [selectedCategory]);
+  const queryString = useMemo(
+    () =>
+      constructQuery({
+        ...query,
+        [selectedCategory]: option,
+      }),
+    [option]
+  );
 
   return (
     <button
-      key={option}
-      onClick={handleClickOptions(option)}
+      onClick={handleClick}
       className={twMerge(
         'border p-1',
-        selectedOption === option && 'border-4 border-red-800'
+        query[selectedCategory] === option && 'border-4 border-red-800'
       )}
     >
       <Img

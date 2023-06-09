@@ -4,14 +4,9 @@ import { DicebearQuery, DicebearQueryKey } from '@/utils/helpers';
 import DicebearCategory from './dicebearCategory';
 import DicebearOption from './dicebearOption';
 
-interface Props {
-  setQuery: React.Dispatch<React.SetStateAction<DicebearQuery>>;
-  query: DicebearQuery;
-}
-
 const keyOptions = Object.keys(avatarOptions);
 
-export default function DicebearOptions({ setQuery, query }: Props) {
+export default function DicebearOptions() {
   const [selectedCategory, setSelectedCategory] = useState<DicebearQueryKey>(
     keyOptions[0] as DicebearQueryKey
   );
@@ -28,8 +23,6 @@ export default function DicebearOptions({ setQuery, query }: Props) {
   const options = avatarOptions[selectedCategory].map((option) => (
     <DicebearOption
       key={option}
-      query={query}
-      setQuery={setQuery}
       selectedCategory={selectedCategory}
       option={option}
     />

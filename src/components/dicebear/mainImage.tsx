@@ -1,12 +1,11 @@
 import React from 'react';
 import Img from '@/components/common/img';
 import { BACKEND_URL } from '@/config';
+import { useDicebearContext } from '@/context/dicebearContext';
 
-interface Props {
-  queryString: string;
-}
+export default function MainImage() {
+  const { queryString } = useDicebearContext();
 
-export default function MainImage({ queryString }: Props) {
   return (
     <Img
       src={`${BACKEND_URL}${queryString}`}
