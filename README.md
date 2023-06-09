@@ -30,6 +30,8 @@ https://www.dicebear.com/
 
 I'm currently using the default endpoint but you can always self [host dicebear HTTP Api](https://www.dicebear.com/guides/host-the-http-api-yourself)
 
+1. Create .env file in the root of your folder and copy the text below
+
 ```
 NEXT_PUBLIC_BACKEND_URL=https://api.dicebear.com/6.x/adventurer/svg
 ```
