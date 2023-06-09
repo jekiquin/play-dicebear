@@ -19,7 +19,6 @@ const {
 
 export default function Home() {
   const [query, setQuery] = useState<DicebearQuery>({
-    seed: seed[0],
     backgroundColor: backgroundColor[0],
     eyebrows: eyebrows[0],
     eyes: eyes[0],
@@ -30,12 +29,13 @@ export default function Home() {
   });
 
   const queryString = useMemo(() => constructQuery(query), [query]);
+  console.log(queryString);
 
   return (
     <div className="flex flex-col gap-10 items-center">
       Dicebear
       <MainImage queryString={queryString} />
-      <DicebearOptions />
+      <DicebearOptions setQuery={setQuery} query={query} />
     </div>
   );
 }

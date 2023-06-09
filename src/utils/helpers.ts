@@ -1,13 +1,14 @@
 export interface DicebearQuery {
-  seed: string | null;
-  backgroundColor: string | null;
-  eyebrows: string | null;
-  eyes: string | null;
-  hair: string | null;
-  hairColor: string | null;
-  mouth: string | null;
-  skinColor: string | null;
+  backgroundColor: string;
+  eyebrows: string;
+  eyes: string;
+  hair: string;
+  hairColor: string;
+  mouth: string;
+  skinColor: string;
 }
+
+export type DicebearQueryKey = keyof DicebearQuery;
 
 export const constructQuery = (queryObj: DicebearQuery) => {
   let queryList: string[] = [];
