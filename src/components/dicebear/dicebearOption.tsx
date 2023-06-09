@@ -1,4 +1,3 @@
-import { BACKEND_URL } from '@/config';
 import { DicebearQueryKey, constructQuery } from '@/utils/helpers';
 import { twMerge } from 'tailwind-merge';
 import Img from '../common/img';
@@ -28,11 +27,7 @@ export default function DicebearOption({ selectedCategory, option }: Props) {
       onClick={handleClick}
       className={twMerge(styles.root, selectedStyle)}
     >
-      <Img
-        src={`${BACKEND_URL}${queryString}`}
-        alt="avatar"
-        className={styles.img}
-      />
+      <Img src={queryString} alt="avatar" className={styles.img} />
     </button>
   );
 }

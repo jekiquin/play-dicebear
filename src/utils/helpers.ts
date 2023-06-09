@@ -1,3 +1,5 @@
+import { BACKEND_URL } from '@/config';
+
 export interface DicebearQuery {
   backgroundColor: string;
   eyebrows: string;
@@ -11,6 +13,8 @@ export interface DicebearQuery {
 export type DicebearQueryKey = keyof DicebearQuery;
 
 export const constructQuery = (queryObj: DicebearQuery) => {
+  if (!BACKEND_URL) throw new Error('Missing Dicebear URL');
+
   let queryList: string[] = [];
 
   Object.entries(queryObj).forEach(([key, value]) => {
@@ -19,5 +23,7 @@ export const constructQuery = (queryObj: DicebearQuery) => {
     }
   });
 
-  return queryList.length ? '?scale=75&' + queryList.join('&') : '';
+  return queryList.length
+    ? `${BACKEND_URL}?scale=75&${queryList.join('&')}`
+    : BACKEND_URL;
 };
