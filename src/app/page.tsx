@@ -6,16 +6,8 @@ import { DicebearQuery, constructQuery } from '@/utils/helpers';
 import { avatarOptions } from '@/utils/constants';
 import { useMemo, useState } from 'react';
 
-const {
-  seed,
-  backgroundColor,
-  eyebrows,
-  eyes,
-  hair,
-  hairColor,
-  mouth,
-  skinColor,
-} = avatarOptions;
+const { backgroundColor, eyebrows, eyes, hair, hairColor, mouth, skinColor } =
+  avatarOptions;
 
 export default function Home() {
   const [query, setQuery] = useState<DicebearQuery>({
@@ -29,7 +21,6 @@ export default function Home() {
   });
 
   const queryString = useMemo(() => constructQuery(query), [query]);
-  console.log(queryString);
 
   return (
     <div className="flex flex-col gap-10 items-center">

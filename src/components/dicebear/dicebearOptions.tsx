@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { avatarOptions } from '@/utils/constants';
 import { twMerge } from 'tailwind-merge';
-import { DicebearQuery, DicebearQueryKey } from '@/utils/helpers';
+import {
+  DicebearQuery,
+  DicebearQueryKey,
+  constructQuery,
+} from '@/utils/helpers';
+import Img from '../common/img';
+import { BACKEND_URL } from '@/config';
 
 interface Props {
   setQuery: React.Dispatch<React.SetStateAction<DicebearQuery>>;
@@ -49,25 +55,33 @@ export default function DicebearOptions({ setQuery, query }: Props) {
     </button>
   ));
 
-  const options = avatarOptions[selectedCategory].map((option) => (
-    <button
-      key={option}
-      onClick={handleClickOptions(option)}
-      className={twMerge(
-        'border p-1',
-        selectedOption === option && 'border border-red-800'
-      )}
-    >
-      {option}
-    </button>
-  ));
-
-  console.log(selectedCategory, selectedOption);
+  const options = avatarOptions[selectedCategory].map((option) => {
+    const queryString = constructQuery({
+      ...query,
+      [selectedCategory]: option,
+    });
+    return (
+      <button
+        key={option}
+        onClick={handleClickOptions(option)}
+        className={twMerge(
+          'border p-1',
+          selectedOption === option && 'border-4 border-red-800'
+        )}
+      >
+        <Img
+          src={`${BACKEND_URL}${queryString}&scale=75`}
+          alt="avatar"
+          className="h-40 w-40"
+        />
+      </button>
+    );
+  });
 
   return (
-    <div>
-      <div className="flex gap-4">{category}</div>
-      <div className="flex gap-4">{options}</div>
+    <div className="flex flex-col gap-6">
+      <div className="flex gap-4 justify-center">{category}</div>
+      <div className="flex gap-4 flex-wrap">{options}</div>
     </div>
   );
 }

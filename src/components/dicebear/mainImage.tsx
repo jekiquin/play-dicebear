@@ -1,5 +1,6 @@
 import React from 'react';
 import Img from '@/components/common/img';
+import { BACKEND_URL } from '@/config';
 
 interface Props {
   queryString: string;
@@ -8,9 +9,9 @@ interface Props {
 export default function MainImage({ queryString }: Props) {
   return (
     <Img
-      src={`https://api.dicebear.com/6.x/adventurer/svg${queryString}`}
+      src={`${BACKEND_URL}${queryString}`}
       alt="avatar"
-      className="h-40 w-40"
+      className="h-56 w-56"
     />
   );
 }
