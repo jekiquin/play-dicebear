@@ -20,22 +20,7 @@ export const initState = {
 };
 
 export const reducer = (state: DicebearQuery, action: Action) => {
-  switch (action.type) {
-    case 'backgroundColor':
-      return { ...state, [action.type]: action.payload };
-    case 'eyebrows':
-      return { ...state, [action.type]: action.payload };
-    case 'eyes':
-      return { ...state, [action.type]: action.payload };
-    case 'hair':
-      return { ...state, [action.type]: action.payload };
-    case 'hairColor':
-      return { ...state, [action.type]: action.payload };
-    case 'mouth':
-      return { ...state, [action.type]: action.payload };
-    case 'skinColor':
-      return { ...state, [action.type]: action.payload };
-    default:
-      return state;
-  }
+  return initState[action.type] !== undefined
+    ? { ...state, [action.type]: action.payload }
+    : state;
 };
