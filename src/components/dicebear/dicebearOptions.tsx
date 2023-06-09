@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { avatarOptions } from '@/utils/constants';
-import { DicebearQuery, DicebearQueryKey } from '@/utils/helpers';
+import { DicebearQueryKey } from '@/utils/helpers';
 import DicebearCategory from './dicebearCategory';
 import DicebearOption from './dicebearOption';
 

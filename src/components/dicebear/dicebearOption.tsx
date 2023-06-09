@@ -1,6 +1,6 @@
 import { BACKEND_URL } from '@/config';
 import { DicebearQueryKey, constructQuery } from '@/utils/helpers';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 import Img from '../common/img';
 import { useDicebearContext } from '@/context/dicebearContext';
