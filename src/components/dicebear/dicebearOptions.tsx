@@ -8,6 +8,7 @@ import {
 } from '@/utils/helpers';
 import Img from '../common/img';
 import { BACKEND_URL } from '@/config';
+import DicebearCategory from './dicebearCategory';
 
 interface Props {
   setQuery: React.Dispatch<React.SetStateAction<DicebearQuery>>;
@@ -25,12 +26,6 @@ export default function DicebearOptions({ setQuery, query }: Props) {
     query[selectedCategory]
   );
 
-  const handleClickCategory = (value: string) => {
-    return () => {
-      setSelectedCategory(value as DicebearQueryKey);
-    };
-  };
-
   const handleClickOptions = (value: string) => {
     return () => {
       setSelectedOption(value);
@@ -43,16 +38,12 @@ export default function DicebearOptions({ setQuery, query }: Props) {
   }, [selectedCategory]);
 
   const category = keyOptions.map((value) => (
-    <button
-      className={twMerge(
-        'border p-1 hover:bg-black hover:text-white transition-all',
-        selectedCategory === value && 'bg-black text-white'
-      )}
-      onClick={handleClickCategory(value)}
+    <DicebearCategory
       key={value}
-    >
-      {value.toUpperCase()}
-    </button>
+      className={selectedCategory === value ? 'bg-black text-white' : ''}
+      category={value}
+      setSelectedCategory={setSelectedCategory}
+    />
   ));
 
   const options = avatarOptions[selectedCategory].map((option) => {
