@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { avatarOptions } from '@/utils/constants';
-import { twMerge } from 'tailwind-merge';
-import {
-  DicebearQuery,
-  DicebearQueryKey,
-  constructQuery,
-} from '@/utils/helpers';
-import Img from '../common/img';
-import { BACKEND_URL } from '@/config';
+import { DicebearQuery, DicebearQueryKey } from '@/utils/helpers';
 import DicebearCategory from './dicebearCategory';
+import DicebearOption from './dicebearOption';
 
 interface Props {
   setQuery: React.Dispatch<React.SetStateAction<DicebearQuery>>;
@@ -22,21 +16,6 @@ export default function DicebearOptions({ setQuery, query }: Props) {
     keyOptions[0] as DicebearQueryKey
   );
 
-  const [selectedOption, setSelectedOption] = useState<string>(
-    query[selectedCategory]
-  );
-
-  const handleClickOptions = (value: string) => {
-    return () => {
-      setSelectedOption(value);
-      setQuery((prev) => ({ ...prev, [selectedCategory]: value }));
-    };
-  };
-
-  useEffect(() => {
-    setSelectedOption(query[selectedCategory]);
-  }, [selectedCategory]);
-
   const category = keyOptions.map((value) => (
     <DicebearCategory
       key={value}
@@ -46,28 +25,15 @@ export default function DicebearOptions({ setQuery, query }: Props) {
     />
   ));
 
-  const options = avatarOptions[selectedCategory].map((option) => {
-    const queryString = constructQuery({
-      ...query,
-      [selectedCategory]: option,
-    });
-    return (
-      <button
-        key={option}
-        onClick={handleClickOptions(option)}
-        className={twMerge(
-          'border p-1',
-          selectedOption === option && 'border-4 border-red-800'
-        )}
-      >
-        <Img
-          src={`${BACKEND_URL}${queryString}&scale=75`}
-          alt="avatar"
-          className="h-40 w-40"
-        />
-      </button>
-    );
-  });
+  const options = avatarOptions[selectedCategory].map((option) => (
+    <DicebearOption
+      key={option}
+      query={query}
+      setQuery={setQuery}
+      selectedCategory={selectedCategory}
+      option={option}
+    />
+  ));
 
   return (
     <div className="flex flex-col gap-6">
