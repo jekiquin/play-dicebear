@@ -16,5 +16,5 @@ export default function MainImage() {
 }
 
 const styles = {
-  img: 'h-56 w-56',
+  img: 'h-56 w-56 rounded-full overflow-hidden',
 };

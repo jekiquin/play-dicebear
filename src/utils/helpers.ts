@@ -19,5 +19,5 @@ export const constructQuery = (queryObj: DicebearQuery) => {
     }
   });
 
-  return queryList.length ? '?' + queryList.join('&') : '';
+  return queryList.length ? '?scale=75&' + queryList.join('&') : '';
 };

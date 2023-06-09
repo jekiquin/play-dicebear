@@ -29,7 +29,7 @@ export default function DicebearOption({ selectedCategory, option }: Props) {
       className={twMerge(styles.root, selectedStyle)}
     >
       <Img
-        src={`${BACKEND_URL}${queryString}&scale=75`}
+        src={`${BACKEND_URL}${queryString}`}
         alt="avatar"
         className={styles.img}
       />
