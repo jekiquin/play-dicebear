@@ -1,4 +1,4 @@
-import { DicebearQueryKey } from '@/utils/helpers';
+import { DicebearQueryKey, camelCaseToRegular } from '@/utils/helpers';
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -17,7 +17,7 @@ export default function DicebearCategory({
     setSelectedCategory(category as DicebearQueryKey);
   };
 
-  const displayCategory = category.toUpperCase();
+  const displayCategory = camelCaseToRegular(category).toUpperCase();
 
   return (
     <button

@@ -27,3 +27,7 @@ export const constructQuery = (queryObj: DicebearQuery) => {
     ? `${BACKEND_URL}?scale=75&${queryList.join('&')}`
     : BACKEND_URL;
 };
+
+export const camelCaseToRegular = (str: string) => {
+  return str.replace(/[A-Z]/g, (match) => ` ${match.toLowerCase()}`);
+};
