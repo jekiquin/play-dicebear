@@ -1,6 +1,5 @@
 import { BACKEND_URL } from '@/config';
 import { DicebearQueryKey, constructQuery } from '@/utils/helpers';
-import React, { useEffect, useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 import Img from '../common/img';
 import { useDicebearContext } from '@/context/dicebearContext';
@@ -17,14 +16,10 @@ export default function DicebearOption({ selectedCategory, option }: Props) {
     dispatch({ type: selectedCategory, payload: option });
   };
 
-  const queryString = useMemo(
-    () =>
-      constructQuery({
-        ...query,
-        [selectedCategory]: option,
-      }),
-    [option, selectedCategory]
-  );
+  const queryString = constructQuery({
+    ...query,
+    [selectedCategory]: option,
+  });
 
   const selectedStyle = query[selectedCategory] === option && styles.selected;
 

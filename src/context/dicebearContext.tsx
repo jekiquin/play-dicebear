@@ -3,7 +3,6 @@ import {
   ReactNode,
   createContext,
   useContext,
-  useMemo,
   useReducer,
 } from 'react';
 
@@ -32,7 +31,7 @@ export default function DicebearProvider({
   children: ReactNode;
 }) {
   const [query, dispatch] = useReducer(reducer, initState);
-  const queryString = useMemo(() => constructQuery(query), [query]);
+  const queryString = constructQuery(query);
 
   return (
     <DicebearContext.Provider value={{ query, queryString, dispatch }}>
