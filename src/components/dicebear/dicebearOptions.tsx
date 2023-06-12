@@ -11,10 +11,12 @@ export default function DicebearOptions() {
     keyOptions[0] as DicebearQueryKey
   );
 
+  const setDicebearCategoryStyle = (value: string) => selectedCategory === value ? styles.selectedCategory : ''
+
   const category = keyOptions.map((value) => (
     <DicebearCategory
       key={value}
-      className={selectedCategory === value ? styles.selectedCategory : ''}
+      className={setDicebearCategoryStyle(value)}
       category={value}
       setSelectedCategory={setSelectedCategory}
     />
