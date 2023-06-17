@@ -3,6 +3,8 @@ import { avatarOptions } from '@/utils/constants';
 import { DicebearQueryKey } from '@/utils/helpers';
 import DicebearCategory from './dicebearCategory';
 import DicebearOption from './dicebearOption';
+import { useDicebearContext } from '@/context/dicebearContext';
+import { saveImage } from '@/fetcher/imageQuery';
 
 const keyOptions = Object.keys(avatarOptions);
 
@@ -10,6 +12,13 @@ export default function DicebearOptions() {
   const [selectedCategory, setSelectedCategory] = useState<DicebearQueryKey>(
     keyOptions[0] as DicebearQueryKey
   );
+
+  const { queryString } = useDicebearContext();
+
+  const handleSave = async () => {
+    const res = await saveImage(queryString);
+    console.log(res);
+  };
 
   const setDicebearCategoryStyle = (value: string) =>
     selectedCategory === value ? styles.selectedCategory : '';
@@ -33,9 +42,11 @@ export default function DicebearOptions() {
 
   return (
     <div className={styles.root}>
+      <button className={styles.button} onClick={handleSave}>
+        Save The Image
+      </button>
       <div className={styles.category}>{category}</div>
       <div className={styles.options}>{options}</div>
-      <button className={styles.button}>Save The Image</button>
     </div>
   );
 }
@@ -46,5 +57,5 @@ const styles = {
   options: 'flex gap-4 flex-wrap',
   selectedCategory: 'bg-black text-white',
   button:
-    'mt-10 w-fit grow-0 px-4 py-1 mx-auto border border-black hover:bg-black hover:text-white',
+    'w-fit grow-0 px-4 py-1 mx-auto border border-black hover:bg-black hover:text-white',
 };
