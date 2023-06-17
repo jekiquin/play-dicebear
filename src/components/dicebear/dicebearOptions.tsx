@@ -11,7 +11,8 @@ export default function DicebearOptions() {
     keyOptions[0] as DicebearQueryKey
   );
 
-  const setDicebearCategoryStyle = (value: string) => selectedCategory === value ? styles.selectedCategory : ''
+  const setDicebearCategoryStyle = (value: string) =>
+    selectedCategory === value ? styles.selectedCategory : '';
 
   const category = keyOptions.map((value) => (
     <DicebearCategory
@@ -34,6 +35,7 @@ export default function DicebearOptions() {
     <div className={styles.root}>
       <div className={styles.category}>{category}</div>
       <div className={styles.options}>{options}</div>
+      <button className={styles.button}>Save The Image</button>
     </div>
   );
 }
@@ -43,4 +45,6 @@ const styles = {
   category: 'flex gap-4 justify-center',
   options: 'flex gap-4 flex-wrap',
   selectedCategory: 'bg-black text-white',
+  button:
+    'mt-10 w-fit grow-0 px-4 py-1 mx-auto border border-black hover:bg-black hover:text-white',
 };
