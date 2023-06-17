@@ -12,6 +12,12 @@ const nextConfig = {
         port: '',
         pathname: `${pathname}**`,
       },
+      {
+        protocol: 'https',
+        hostname: `${process.env.S3_BUCKET}.s3.${process.env.REGION}.amazonaws.com`,
+        port: '',
+        pathname: `/avatar/**`,
+      },
     ],
   },
 };

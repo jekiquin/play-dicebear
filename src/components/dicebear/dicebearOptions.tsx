@@ -20,9 +20,7 @@ export default function DicebearOptions() {
 
   const handleSave = async () => {
     const res = await saveImage(queryString);
-    // const url = URL.createObjectURL(new Blob([res]));
-    // setSavedImage(url);
-    console.log(res);
+    setSavedImage(res);
   };
 
   const setDicebearCategoryStyle = (value: string) =>
@@ -47,9 +45,9 @@ export default function DicebearOptions() {
 
   return (
     <div className={styles.root}>
-      {/* {savedImage && (
-        <img src={savedImage} alt="saved image" className="h-5 w-5" />
-      )} */}
+      {savedImage && (
+        <Img src={savedImage} alt="saved image" className="h-10 w-10" />
+      )}
       <button className={styles.button} onClick={handleSave}>
         Save The Image
       </button>
