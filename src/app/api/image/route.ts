@@ -1,3 +1,4 @@
+import { saveImageUrlToS3 } from '@/utils/server';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -5,8 +6,8 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const body = await request.json();
-  console.log('here', body);
+  const { url, id } = await request.json();
+  await saveImageUrlToS3(url, id);
 
-  return NextResponse.json(body);
+  return NextResponse.json({ url, id });
 }
