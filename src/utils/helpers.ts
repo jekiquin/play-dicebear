@@ -31,3 +31,9 @@ export const constructQuery = (queryObj: DicebearQuery) => {
 export const camelCaseToRegular = (str: string) => {
   return str.replace(/[A-Z]/g, (match) => ` ${match.toLowerCase()}`);
 };
+
+export const generateOptionList = (prefix: string, iterations: number) => {
+  return Array(iterations)
+    .fill(prefix)
+    .map((item, idx) => item + `${idx + 1}`.padStart(2, '0'));
+};
