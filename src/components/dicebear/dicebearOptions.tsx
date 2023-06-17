@@ -5,6 +5,7 @@ import DicebearCategory from './dicebearCategory';
 import DicebearOption from './dicebearOption';
 import { useDicebearContext } from '@/context/dicebearContext';
 import { saveImage } from '@/fetcher/imageQuery';
+import Img from '../common/img';
 
 const keyOptions = Object.keys(avatarOptions);
 
@@ -13,10 +14,14 @@ export default function DicebearOptions() {
     keyOptions[0] as DicebearQueryKey
   );
 
+  const [savedImage, setSavedImage] = useState<string>('');
+
   const { queryString } = useDicebearContext();
 
   const handleSave = async () => {
     const res = await saveImage(queryString);
+    // const url = URL.createObjectURL(new Blob([res]));
+    // setSavedImage(url);
     console.log(res);
   };
 
@@ -42,6 +47,9 @@ export default function DicebearOptions() {
 
   return (
     <div className={styles.root}>
+      {/* {savedImage && (
+        <img src={savedImage} alt="saved image" className="h-5 w-5" />
+      )} */}
       <button className={styles.button} onClick={handleSave}>
         Save The Image
       </button>

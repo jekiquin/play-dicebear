@@ -1,5 +1,10 @@
 import { ACCESS_KEY, REGION, S3_BUCKET, SECRET_ACCESS_KEY } from '@/config';
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import {
+  S3Client,
+  PutObjectCommand,
+  GetObjectCommand,
+} from '@aws-sdk/client-s3';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 const initS3Client = () => {
   if (!ACCESS_KEY || !SECRET_ACCESS_KEY) throw new Error('Missing credentials');
@@ -22,9 +27,23 @@ export const uploadToS3 = async (data: string, fileName: string) => {
     Bucket: S3_BUCKET,
     Key: fileName,
     Body: data,
+    ContentType: 'image/svg+xml',
   };
 
-  const outputData = await s3.send(new PutObjectCommand(params));
+  await s3.send(new PutObjectCommand(params));
 
-  return outputData;
+  const s3ImageUrl = getImageUrlFromS3(fileName);
+
+  return s3ImageUrl;
+};
+
+export const getImageUrlFromS3 = async (fileName: string) => {
+  const params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+  };
+
+  const command = new GetObjectCommand(params);
+
+  return await getSignedUrl(s3, command);
 };
