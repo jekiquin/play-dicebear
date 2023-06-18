@@ -1,10 +1,36 @@
+'use client';
 import Img from '@/components/common/img';
-import React from 'react';
+import { useDicebearContext } from '@/context/dicebearContext';
+import { getImage } from '@/fetcher/imageQuery';
+
+import React, { useEffect, useState } from 'react';
 
 export default function Home() {
+  const [imgUrl, setImgUrl] = useState('');
+
+  const fetchImageUrl = async () => {
+    const { url } = await getImage(1);
+    setImgUrl(url);
+  };
+
+  useEffect(() => {
+    fetchImageUrl();
+  }, []);
+
+  console.log({ imgUrl });
+
   return (
     <div className={styles.root}>
-      <Img src="/s3/avatar/1.svg" alt="saved image" className={styles.image} />
+      {imgUrl && (
+        <>
+          <h2>Avatar</h2>
+          <Img
+            src={`${imgUrl}?cache=${Date.now()}`}
+            alt="saved image"
+            className={styles.image}
+          />
+        </>
+      )}
     </div>
   );
 }

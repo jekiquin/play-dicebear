@@ -26,3 +26,5 @@ export const ROUTE = {
   home: '/',
   avatarEdit: '/avatar-edit',
 };
+
+export const USER = 1;

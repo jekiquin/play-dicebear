@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ROUTE, avatarOptions } from '@/utils/constants';
+import { ROUTE, USER, avatarOptions } from '@/utils/constants';
 import { DicebearQueryKey } from '@/utils/helpers';
 import DicebearCategory from './dicebearCategory';
 import DicebearOption from './dicebearOption';
@@ -18,7 +18,7 @@ export default function DicebearOptions() {
   const { queryString } = useDicebearContext();
 
   const handleSave = async () => {
-    await saveImage(queryString);
+    const res = await saveImage(queryString, USER);
     router.push(ROUTE.home);
   };
 

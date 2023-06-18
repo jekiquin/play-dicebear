@@ -29,7 +29,6 @@ const nextConfig = {
         pathname: AVATAR_IMAGE_PATH,
       },
     ],
-    minimumCacheTTL: 1,
   },
   rewrites() {
     return [

@@ -15,6 +15,14 @@ export type DicebearQueryKey = keyof DicebearQuery;
 export const constructQuery = (queryObj: DicebearQuery) => {
   if (!BACKEND_URL) throw new Error('Missing Dicebear URL');
 
+  const queryListString = queryObjectToQueryString(queryObj);
+
+  return queryListString.length
+    ? `${BACKEND_URL}?scale=75&${queryListString}`
+    : BACKEND_URL;
+};
+
+export const queryObjectToQueryString = (queryObj: DicebearQuery) => {
   let queryList: string[] = [];
 
   Object.entries(queryObj).forEach(([key, value]) => {
@@ -23,9 +31,7 @@ export const constructQuery = (queryObj: DicebearQuery) => {
     }
   });
 
-  return queryList.length
-    ? `${BACKEND_URL}?scale=75&${queryList.join('&')}`
-    : BACKEND_URL;
+  return queryList.join('&');
 };
 
 export const camelCaseToRegular = (str: string) => {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const saveImage = async (dicebearQueryUrl: string, id: number = 1) => {
+export const saveImage = async (dicebearQueryUrl: string, id: number) => {
   return (
     await axios.post(
       '/api/image',
@@ -12,4 +12,8 @@ export const saveImage = async (dicebearQueryUrl: string, id: number = 1) => {
       }
     )
   ).data;
+};
+
+export const getImage = async (id: number) => {
+  return (await axios.get(`/api/image/${id}`)).data;
 };

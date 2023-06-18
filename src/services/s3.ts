@@ -26,7 +26,7 @@ const initS3Client = () => {
 
 const s3 = initS3Client();
 
-export const uploadToS3 = async (data: string, fileName: string) => {
+const createPutObjectCommand = (fileName: string, data: string) => {
   if (!S3_BUCKET) throw new Error('Missing bucket name');
 
   const params = {
@@ -34,20 +34,32 @@ export const uploadToS3 = async (data: string, fileName: string) => {
     Key: fileName,
     Body: data,
     ContentType: 'image/svg+xml',
+    CacheControl: 'no-cache',
   };
 
-  await s3.send(new PutObjectCommand(params));
-
-  return { url: `${AVATAR_IMAGE_PATH}/${fileName}` };
+  return new PutObjectCommand(params);
 };
 
-export const getImageUrlFromS3 = async (fileName: string) => {
+const createGetObjectCommand = (fileName: string) => {
+  if (!S3_BUCKET) throw new Error();
+
   const params = {
     Bucket: S3_BUCKET,
     Key: fileName,
   };
 
-  const command = new GetObjectCommand(params);
+  return new GetObjectCommand(params);
+};
 
-  return await getSignedUrl(s3, command);
+export const uploadToS3 = async (data: string, fileName: string) => {
+  const putObjectCommand = createPutObjectCommand(fileName, data);
+  await s3.send(putObjectCommand);
+  const url = await getImageUrlFromS3(fileName);
+
+  return { url };
+};
+
+export const getImageUrlFromS3 = async (fileName: string) => {
+  const getObjectCommand = createGetObjectCommand(fileName);
+  return await getSignedUrl(s3, getObjectCommand);
 };
