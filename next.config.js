@@ -10,6 +10,8 @@ const {
   port: portFE,
 } = new URL(process.env.NEXT_PUBLIC_CURRENT_URL || 'http://localhost:3000');
 
+const AVATAR_IMAGE_PATH = process.env.NEXT_PUBLIC_AVATAR_IMAGE_PATH;
+
 const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
@@ -24,14 +26,14 @@ const nextConfig = {
         protocol: protocolFE.replace(':', ''),
         hostname: hostnameFE,
         port: portFE,
-        pathname: '/avatar-image',
+        pathname: AVATAR_IMAGE_PATH,
       },
     ],
   },
   rewrites() {
     return [
       {
-        source: '/avatar-image/:path*',
+        source: `${AVATAR_IMAGE_PATH}/:path*`,
         destination: `https://${process.env.S3_BUCKET}.s3.${process.env.REGION}.amazonaws.com/avatar/:path*
         `,
       },
