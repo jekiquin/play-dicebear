@@ -34,4 +34,10 @@ I'm currently using the default endpoint but you can always self [host dicebear 
 
 ```
 NEXT_PUBLIC_BACKEND_URL=https://api.dicebear.com/6.x/adventurer/svg
+
+# This is for the s3 bucket where the avatar is saved
+S3_BUCKET=
+REGION=
+ACCESS_KEY=
+SECRET_ACCESS_KEY=
 ```

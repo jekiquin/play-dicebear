@@ -45,9 +45,10 @@ export default function DicebearOptions() {
 
   return (
     <div className={styles.root}>
-      {savedImage && (
+      {/* {savedImage && (
         <Img src={savedImage} alt="saved image" className="h-10 w-10" />
-      )}
+      )} */}
+      <Img src="/avatar-image/1.svg" alt="test" className="h-10 w10" />
       <button className={styles.button} onClick={handleSave}>
         Save The Image
       </button>
