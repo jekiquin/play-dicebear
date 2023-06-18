@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { avatarOptions } from '@/utils/constants';
+import { ROUTE, avatarOptions } from '@/utils/constants';
 import { DicebearQueryKey } from '@/utils/helpers';
 import DicebearCategory from './dicebearCategory';
 import DicebearOption from './dicebearOption';
 import { useDicebearContext } from '@/context/dicebearContext';
 import { saveImage } from '@/fetcher/imageQuery';
-import Img from '../common/img';
+import { useRouter } from 'next/navigation';
 
 const keyOptions = Object.keys(avatarOptions);
 
@@ -13,11 +13,13 @@ export default function DicebearOptions() {
   const [selectedCategory, setSelectedCategory] = useState<DicebearQueryKey>(
     keyOptions[0] as DicebearQueryKey
   );
+  const router = useRouter();
 
   const { queryString } = useDicebearContext();
 
   const handleSave = async () => {
-    const res = await saveImage(queryString);
+    await saveImage(queryString);
+    router.push(ROUTE.home);
   };
 
   const setDicebearCategoryStyle = (value: string) =>

@@ -1,21 +1,15 @@
-'use client';
-
-import MainImage from '@/components/dicebear/mainImage';
-import DicebearOptions from '@/components/dicebear/dicebearOptions';
-import DicebearProvider from '@/context/dicebearContext';
+import Img from '@/components/common/img';
+import React from 'react';
 
 export default function Home() {
   return (
     <div className={styles.root}>
-      Dicebear
-      <DicebearProvider>
-        <MainImage />
-        <DicebearOptions />
-      </DicebearProvider>
+      <Img src="/s3/avatar/1.svg" alt="saved image" className={styles.image} />
     </div>
   );
 }
 
 const styles = {
-  root: 'flex flex-col gap-10 items-center',
+  root: 'flex flex-col items-center',
+  image: 'h-36 w-36',
 };

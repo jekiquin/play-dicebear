@@ -21,3 +21,8 @@ export const avatarOptions = {
 
 export const BLUR_DATA_URL =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
+
+export const ROUTE = {
+  home: '/',
+  avatarEdit: '/avatar-edit',
+};

@@ -1,3 +1,4 @@
+import MainNav from '@/components/common/mainNav';
 import './globals.css';
 
 export const metadata = {
@@ -13,7 +14,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className={styles.main}>{children}</main>
+        <main className={styles.main}>
+          <MainNav />
+          {children}
+        </main>
       </body>
     </html>
   );
