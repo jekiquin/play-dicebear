@@ -8,7 +8,7 @@ const {
   protocol: protocolFE,
   hostname: hostnameFE,
   port: portFE,
-} = new URL(process.env.NEXT_PUBLIC_CURRENT_URL || 'http://localhost:3000');
+} = new URL(process.env.NEXT_PUBLIC_CURRENT_URL);
 
 const AVATAR_IMAGE_PATH = process.env.NEXT_PUBLIC_AVATAR_IMAGE_PATH;
 
@@ -29,12 +29,13 @@ const nextConfig = {
         pathname: AVATAR_IMAGE_PATH,
       },
     ],
+    minimumCacheTTL: 1,
   },
   rewrites() {
     return [
       {
         source: `${AVATAR_IMAGE_PATH}/:path*`,
-        destination: `https://${process.env.S3_BUCKET}.s3.${process.env.REGION}.amazonaws.com/avatar/:path*
+        destination: `https://${process.env.S3_BUCKET}.s3.${process.env.REGION}.amazonaws.com/:path*
         `,
       },
     ];

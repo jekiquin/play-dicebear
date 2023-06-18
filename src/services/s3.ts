@@ -1,4 +1,10 @@
-import { ACCESS_KEY, REGION, S3_BUCKET, SECRET_ACCESS_KEY } from '@/config';
+import {
+  ACCESS_KEY,
+  REGION,
+  S3_BUCKET,
+  SECRET_ACCESS_KEY,
+  AVATAR_IMAGE_PATH,
+} from '@/config';
 import {
   S3Client,
   PutObjectCommand,
@@ -32,9 +38,7 @@ export const uploadToS3 = async (data: string, fileName: string) => {
 
   await s3.send(new PutObjectCommand(params));
 
-  const s3ImageUrl = getImageUrlFromS3(fileName);
-
-  return s3ImageUrl;
+  return { url: `${AVATAR_IMAGE_PATH}/${fileName}` };
 };
 
 export const getImageUrlFromS3 = async (fileName: string) => {
