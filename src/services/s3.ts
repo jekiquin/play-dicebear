@@ -1,10 +1,4 @@
-import {
-  ACCESS_KEY,
-  REGION,
-  S3_BUCKET,
-  SECRET_ACCESS_KEY,
-  AVATAR_IMAGE_PATH,
-} from '@/config';
+import { ACCESS_KEY, REGION, S3_BUCKET, SECRET_ACCESS_KEY } from '@/config';
 import {
   S3Client,
   PutObjectCommand,
@@ -34,7 +28,6 @@ const createPutObjectCommand = (fileName: string, data: string) => {
     Key: fileName,
     Body: data,
     ContentType: 'image/svg+xml',
-    CacheControl: 'no-cache',
   };
 
   return new PutObjectCommand(params);
