@@ -2,15 +2,12 @@
 
 import MainImage from '@/components/dicebear/mainImage';
 import DicebearOptions from '@/components/dicebear/dicebearOptions';
-import DicebearProvider from '@/context/dicebearContext';
 
 export default function AvatarEdit() {
   return (
     <div className={styles.root}>
-      <DicebearProvider>
-        <MainImage />
-        <DicebearOptions />
-      </DicebearProvider>
+      <MainImage />
+      <DicebearOptions />
     </div>
   );
 }
